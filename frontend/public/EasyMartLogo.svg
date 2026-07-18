@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="EasyMart logo">
+  <rect width="128" height="128" rx="24" fill="#f97316"/>
+  <rect x="24" y="24" width="80" height="80" rx="16" fill="#fff7ed"/>
+  <path d="M42 38h44v16H42z" fill="#f97316"/>
+  <path d="M42 60h44v16H42z" fill="#fb923c"/>
+  <circle cx="54" cy="84" r="6" fill="#f97316"/>
+  <circle cx="74" cy="84" r="6" fill="#f97316"/>
+</svg>
