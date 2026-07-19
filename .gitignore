@@ -1,2 +1,6 @@
 .env
 node_modules
+backend/.env
+backend/node_modules
+backend/uploads
+.vscode

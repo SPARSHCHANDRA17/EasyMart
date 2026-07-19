@@ -1,21 +1,11 @@
 const express = require('express');
-const Product = require('../models/Product');
-const Order = require('../models/Order');
-const User = require('../models/User');
+const { getAdminStats } = require('../controllers/analyticsController');
+
+const { protect } = require('../middleware/authMiddleware');
+const { admin } = require('../middleware/adminMiddleware');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-  try {
-    const [products, orders, users] = await Promise.all([
-      Product.countDocuments(),
-      Order.countDocuments(),
-      User.countDocuments(),
-    ]);
-    res.json({ products, orders, users });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+router.get('/', protect, admin, getAdminStats);
 
 module.exports = router;

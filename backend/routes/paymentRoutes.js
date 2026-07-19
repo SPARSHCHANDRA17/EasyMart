@@ -1,12 +1,9 @@
 const express = require('express');
+const { createOrder, verifyPayment } = require('../controllers/paymentController');
+
 const router = express.Router();
 
-router.post('/create-order', (req, res) => {
-  res.json({ success: true, orderId: 'demo-order-1' });
-});
-
-router.post('/verify', (req, res) => {
-  res.json({ success: true });
-});
+router.post('/order', createOrder);
+router.post('/verify', verifyPayment);
 
 module.exports = router;

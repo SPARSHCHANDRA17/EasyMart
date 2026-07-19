@@ -3,10 +3,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const sendEmail = require('../utils/sendEmail');
 
-const jwtSecret = process.env.JWT_SECRET || 'easymart-dev-secret';
-
 const generateToken = (id) => {
-  return jwt.sign({ id }, jwtSecret, { expiresIn: '30d' });
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
 const registerUser = async (req, res) => {
@@ -21,16 +19,20 @@ const registerUser = async (req, res) => {
 
     const user = await User.create({ name, email, password: hashedPassword });
     if (user) {
+      
+      // Generate a mock OTP
       const otp = Math.floor(100000 + Math.random() * 900000);
+      
+      // Send Welcome / OTP Email
       const message = `
-        <h2>Welcome to EasyMart, ${name}!</h2>
+        <h2>Welcome to ShopNest, ${name}!</h2>
         <p>Thank you for registering on our platform.</p>
         <p>Your one-time verification/discount OTP is: <strong>${otp}</strong></p>
       `;
 
       await sendEmail({
         email: user.email,
-        subject: 'Welcome to EasyMart - Your OTP',
+        subject: 'Welcome to ShopNest - Your OTP',
         message
       });
 
